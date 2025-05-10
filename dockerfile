@@ -7,7 +7,7 @@ RUN npm install
 
 COPY . .
 
-RUN npx next build && npx next export
+RUN npm run build && npm run export
 
 RUN npm install -g serve
 
