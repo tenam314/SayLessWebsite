@@ -2,13 +2,16 @@ FROM node:18-alpine
 
 WORKDIR /app
 
-COPY package.json bun.lock* ./
+COPY package.json package-lock.json* ./
 RUN npm install
 
 COPY . .
 
-RUN npm run build
+RUN npx next build && npx next export
+
+RUN npm install -g serve
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["serve", "out", "-p", "3000"]
+
